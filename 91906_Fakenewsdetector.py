@@ -9,6 +9,7 @@ def destroy_TOS():
     user_text.configure(state="normal", bg="#E3E3E3")
     output_text.configure(bg="#E3E3E3")
 
+#make main window
 menu = Tk()
 menu.title("Fake News Detector")
 menu.state('zoomed')
@@ -17,12 +18,18 @@ menu.configure(bg="#EAE0D5")
 
 #Create title of page
 title_label = Label(menu, text="Fake News Detector", foreground="#22333B",bg="#EAE0D5", font=("Helvetica", 40, "bold"))
-title_label.grid(padx=10, pady=10)
+title_label.grid(padx=10, pady=10, column=0, row=0)
+
+#icon 
+icon = PhotoImage(file="assets\icon.png")
+icon = icon.subsample(2)
+icon_label = Label(menu, image=icon, bg='#EAE0D5')
+icon_label.grid(row=0, column=0, sticky=NW)
 
 #subheading
 file = open(r"text files\intro_text.txt", "r")
 userinp_label = Label(menu, text=file.read(), font=("Helvetica", 10))
-userinp_label.grid(row=1, column=0)
+userinp_label.grid(row=1, column=0, pady=5)
 
 #Create label frame 
 user_labelframe = LabelFrame(menu,pady=5, padx=5, bg="#5E503F")
