@@ -1,0 +1,3 @@
+This programme detects Fake News. For this to work, ensure you agree to the terms of service first. 
+
+Simply input a sample text or URL in the input box. Then, using ML, the output box will explain how likely your input is to contain fake news with an explaination. 
