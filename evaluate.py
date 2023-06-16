@@ -1,54 +1,34 @@
 import validators 
 import whois
 
-#testbad = "This domain sucks"
-#testgood = "This domain is good"
-#Function to evaluate URL
+#Function to evaluate domain values in url
 def ev_url(url_input):
     print("This is a url:", url_input)
 
-    #try:
     domain = whois.whois(url_input)
-    #if domain == True:
-     #   print(domain)
-    print(domain)
-    #    return False
-    #except:
-     #   return True
 
-real = "this is a registered domain"
-notreal = "this is not a registered domain"
+    domain_name = list(map(domain.get, ["domain_name"]))
+    creation_domain = list(map(domain.get,["creation_date"]))
+    update_domain = list(map(domain.get, ["updated_date"]))
 
-def domain(url_input):
-    if validators.domain(url_input):
-        try:
-            return print("this is a registerd domain")
-        except:
-            return print("This is not a registerd domain")
+    if domain.get("domain_name") is not None:
+        domain_registerd = True
     else:
-        return print("This wont work")
+        domain_registerd = False
+        creation_domain = 0
+        update_domain = 0
 
+    print(domain_name)
+    print(creation_domain)
+    print(update_domain)
+    print(domain_registerd)
 
-#Evaluate if user inputs URL
-print("Hi please input a URL")
+#Evaluate if user inputs a URL
+print("input a URL")
 user_input = input()
-#print(user_input)
-
 validate_url = validators.url(user_input)
 if validate_url:    
     print("This is a Url")
-    #a = domain(user_input)
-    a = ev_url(user_input)
-    #print(a)
-
-
-    #ev_url(user_input)
+    evaluate = ev_url(user_input)
 else:
     print("not a url")
-    print("But we try anyways")
-    #domain = whois.whois(user_input)
-   # print(domain)
-
-#print(ev_url, user_input)
-#print("Placeholder")
-
