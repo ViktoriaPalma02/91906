@@ -2,12 +2,17 @@ from tkinter import *
 from tkinter import ttk
 import tkinter as tk
 from tkinter import scrolledtext
+import tkinter.messagebox
 
 # When user agrees to terms, destroy TOS page and make main program available
 def destroy_TOS():
     TOS.destroy()
     user_text.configure(state="normal", bg="#E3E3E3")
     output_text.configure(bg="#E3E3E3")
+
+#When user disagree to terms, make program unavailable
+def disagree_TOS():
+    tkinter.messagebox.showinfo("Disagreeing to TOS", "As you do not agree to the TOS, this program will remain unavailable to you.")
 
 # Make main window
 menu = Tk()
@@ -55,10 +60,6 @@ output_text.grid(row=1, column=1, sticky=NSEW)
 user_text.configure(state="disabled", bg="#898989")
 output_text.configure(state="disabled", bg="#898989")
 
-# Enter button for input
-enter_button = Button(menu, text="Enter", justify=CENTER)
-enter_button.grid(row=4, column=0, sticky=W, padx=20, pady=5)
-
 # Create TOS
 TOS = Toplevel(menu)
 TOS.title("Terms of Service")
@@ -101,7 +102,7 @@ agree_button = ttk.Button(tos_labelframe, text="Agree", command=destroy_TOS)
 #agree_button.grid(padx=5, sticky=W, row=2, column=0)
 agree_button.pack(side=LEFT, padx=5)
 
-disagree_button = ttk.Button(tos_labelframe, text="Disagree")
+disagree_button = ttk.Button(tos_labelframe, text="Disagree", command=disagree_TOS)
 #disagree_button.grid(padx=5, row=2, column=1, sticky=E)
 disagree_button.pack(side=RIGHT, padx=5)
 
