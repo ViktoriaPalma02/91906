@@ -168,7 +168,7 @@ def similarity(input):
     Evaluate similarity to other websites
     """
     #google search user_input
-    for i in search(input, tld="co.in", num=15, stop=15, pause=2):
+    for i in search(input, tld="co.in", num=30, stop=30, pause=2):
         print("*starting loop")
         try:
             url = i
