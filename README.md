@@ -1,3 +1,8 @@
 # 91906
 Programme: Detects Fake News
-Not directly linked to code (ran into problems while trying to link this with VSCODE, will fix soon)
+
+#Installing 
+To install this program on github, click the code button and download zip and extract this file.
+To install the requirements, do "pip install -r requirements.txt"
+
+The file that you should run for this program is "fakenewsdetector_main.py"
