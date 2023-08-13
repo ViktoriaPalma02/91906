@@ -1,5 +1,5 @@
 """
-Import modules
+Import modules.
 """
 from tkinter import ttk
 import tkinter as tk
@@ -38,8 +38,8 @@ def get_input():
     Gets input from user and begin evaluating input
     """
     #clear evaluate and tempstore files in case user repeats action
-    open(r"data\evaluate.txt", 'w', encoding="utf-8").close()
-    open(r"text_files\tempstore.txt", "w", encoding="utf-8").close()
+    open(r"data\\evaluate.txt", 'w', encoding="utf-8").close()
+    open(r"text_files\\tempstore.txt", "w", encoding="utf-8").close()
     #Clear output_text
     output_text.configure(state="normal")
     output_text.delete('1.0', tk.END)
@@ -51,18 +51,21 @@ def get_input():
         #evaluate url for domain
         ev_url(user_input)
         #webscrape html
-        file_storehtml = open(r"text_files\html.txt", "w", encoding="utf-8")
+        file_storehtml = open(r"text_files\\html.txt", "w", encoding="utf-8")
         file_storehtml.write(requests.get(user_input, timeout=10).text)
         htmlscrape()
     #user input is text
     else:
+        tkinter.messagebox.showinfo("Received",
+            "Your request has been received, press OK to begin processing.\n\nIf the output is left blank after around 20 seconds, the request most likely failed."
+        )
         #store user_input to file
-        file_store = open(r"text_files\user_input.txt", "w", encoding="utf-8")
+        file_store = open(r"text_files\\user_input.txt", "w", encoding="utf-8")
         file_store.write(user_input)
         #check spelling of input
         spell_check(user_input)
     #store userinput url into file
-    file_store = open(r"text_files\user_input.txt", "w", encoding="utf-8")
+    file_store = open(r"text_files\\user_input.txt", "w", encoding="utf-8")
     file_store.write(user_input)
     #go to similarity function
     similarity(user_input)
@@ -164,7 +167,7 @@ def similarity(input):
     """
     Evaluate similarity to other websites
     """
-    #google search user_input 
+    #google search user_input
     for i in search(input, tld="co.in", num=15, stop=15, pause=2):
         print("*starting loop")
         try:
@@ -278,7 +281,7 @@ title_label = tk.Label(menu, text="Fake News Detector", foreground="#22333B", bg
 title_label.grid(padx=10, pady=10, column=0, row=0)
 
 # Icon
-icon = tk.PhotoImage(file="assets/icon.png")
+icon = tk.PhotoImage(file=r"assets\icon.png")
 icon = icon.subsample(2)
 icon_label = tk.Label(menu, image=icon, bg='#EAE0D5')
 icon_label.grid(row=0, column=0, sticky="NW")
@@ -324,6 +327,15 @@ output_text.configure(state="disabled", bg="#898989")
 # Create tos
 tos = tk.Toplevel(menu)
 tos.title("Terms of Service")
+
+def tos_closed():
+    """
+    Exit program if user exist TOS without agreeing
+    """
+    menu.destroy()
+
+tos.protocol("WM_DELETE_WINDOW", tos_closed)
+
 #set window at center
 HEIGHT = 400
 WIDTH = 500
